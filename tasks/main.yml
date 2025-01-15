@@ -4,7 +4,7 @@
 # tasks file for prxmx_vm_2024
 
 - name: Create VM in Proxmox VE
-  proxmox_kvm:
+  community.general.proxmox_kvm:
     api_user: "root"
     api_password: "ixelles1050"
     api_host: "pve-pxs-sm2u-r5-33"
@@ -16,7 +16,7 @@
     scsi0: "local-lvm:50" 
     scsi1: "local-lvm:30" 
     scsi2: "local-lvm:20"
-    net0: "virtio,bridge=vmbr0,tag=vlan-test"
+    net0: "virtio,bridge=vmbr0v508"
     ostype: "l26"
     iso: "/var/lib/vz/template/iso/ubuntu-24.04-live-server-amd64.iso"
     state: present
