@@ -1,14 +1,5 @@
 ---
-- name: Check if Ubuntu ISO exists 
-  stat: 
-    path: "/var/lib/vz/template/iso/ubuntu-24.04-live-server-amd64.iso" 
-  register: iso_file 
 
-- name: Download Ubuntu ISO 
-  get_url: 
-    url: "https://releases.ubuntu.com/24.04/ubuntu-24.04-live-server-amd64.iso" 
-    dest: "/var/lib/vz/template/iso/ubuntu-24.04-live-server-amd64.iso" 
-  when: not iso_file.stat.exists
 
 # tasks file for prxmx_vm_2024
 
