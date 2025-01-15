@@ -1,29 +1,26 @@
 ---
+- name: Download Ubuntu ISO 
+  get_url: 
+  url: "https://releases.ubuntu.com/24.04/ubuntu-24.04-live-server-amd64.iso"
+  dest: "/var/lib/vz/template/iso/ubuntu-24.04-live-server-amd64.iso"
 # tasks file for prxmx_vm_2024
 
 - name: Create VM in Proxmox VE
   proxmox_kvm:
     api_user: "ansible"
     api_password: "Ixelles1050"
-    api_host: "proxmox_host"
-    node: "proxmox_node"
+    api_host: "pve-pxs-sm2u-r5-33"
+    node: "pve-pxs-sm2u-r5-33"
     vmid: 100
     name: "ubuntu_vm"
     memory: 2048
     cores: 2
-    disks:
-      - size: 50G
-        storage: "local-lvm"
-        type: "scsi"
-      - size: 30G
-        storage: "local-lvm"
-        type: "scsi"
-      - size: 20G
-        storage: "local-lvm"
-        type: "scsi"
+    scsi0: "local-lvm:50" 
+    scsi1: "local-lvm:30" 
+    scsi2: "local-lvm:20"
     net0: "virtio,bridge=vmbr0,tag=vlan-test"
     ostype: "l26"
-    iso: "local:iso/ubuntu-24.04.iso"
+    iso: "/var/lib/vz/template/iso/ubuntu-24.04-live-server-amd64.iso"
     state: present
 
 - name: Disable Firewall
