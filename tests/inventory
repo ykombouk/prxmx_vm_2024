@@ -1,2 +1,4 @@
-localhost
+[proxmox]
+proxmox_host ansible_host=pve-pxs-sm2u-r5-33 ansible_user=root ansible_password=Ixelles1050
+
 
