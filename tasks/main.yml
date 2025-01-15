@@ -10,32 +10,18 @@
     api_host: "pve-pxs-sm2u-r5-33"
     node: "pve-pxs-sm2u-r5-33"
     vmid: 100
-    name: "ubuntu_vm"
-    memory: 2048
+    name: "my_vm"
+    iso: "/var/lib/vz/template/iso/ubuntu-24.04.1-live-server-amd64.iso"
+    net:
+      - model: virtio
+        bridge: vmbr0
+    scsi:
+      - size: 50
+        storage: local
+        format: qcow2
     cores: 2
-    scsi0: "local-lvm:50" 
-    scsi1: "local-lvm:30" 
-    scsi2: "local-lvm:20"
-    net0: "virtio,bridge=vmbr0v508"
+    memory: 2048
     ostype: "l26"
-    iso: "/var/lib/vz/template/iso/ubuntu-24.04-live-server-amd64.iso"
-    state: present
+    boot: "c"
+    state: "present"
 
-- name: Disable Firewall
-  ufw:
-    state: disabled
-
-- name: Install Nginx
-  apt:
-    name: nginx
-    state: present
-
-- name: Install PostgreSQL
-  apt:
-    name: postgresql
-    state: present
-
-- name: Install PHP
-  apt:
-    name: php
-    state: present
