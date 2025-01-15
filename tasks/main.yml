@@ -1,0 +1,46 @@
+---
+# tasks file for prxmx_vm_2024
+
+- name: Create VM in Proxmox VE
+  proxmox_kvm:
+    api_user: "ansible"
+    api_password: "Ixelles1050"
+    api_host: "proxmox_host"
+    node: "proxmox_node"
+    vmid: 100
+    name: "ubuntu_vm"
+    memory: 2048
+    cores: 2
+    disks:
+      - size: 50G
+        storage: "local-lvm"
+        type: "scsi"
+      - size: 30G
+        storage: "local-lvm"
+        type: "scsi"
+      - size: 20G
+        storage: "local-lvm"
+        type: "scsi"
+    net0: "virtio,bridge=vmbr0,tag=vlan-test"
+    ostype: "l26"
+    iso: "local:iso/ubuntu-24.04.iso"
+    state: present
+
+- name: Disable Firewall
+  ufw:
+    state: disabled
+
+- name: Install Nginx
+  apt:
+    name: nginx
+    state: present
+
+- name: Install PostgreSQL
+  apt:
+    name: postgresql
+    state: present
+
+- name: Install PHP
+  apt:
+    name: php
+    state: present

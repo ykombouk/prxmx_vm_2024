@@ -1,0 +1,4 @@
+---
+- hosts: proxmox
+  roles:
+    - prxmx_vm_2024
