@@ -16,7 +16,7 @@
         model: virtio
         bridge: vmbr0
     scsi:
-      - size: 50
+        size: 50
         storage: local
         format: qcow2
     cores: 2
