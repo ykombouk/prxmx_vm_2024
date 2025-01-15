@@ -13,7 +13,7 @@
     name: "my_vm"
     iso: "/var/lib/vz/template/iso/ubuntu-24.04.1-live-server-amd64.iso"
     net:
-      - model: virtio
+        model: virtio
         bridge: vmbr0
     scsi:
       - size: 50
